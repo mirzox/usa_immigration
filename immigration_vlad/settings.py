@@ -36,7 +36,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(" ")
-
+CSRF_TRUSTED_ORIGINS = ['https://vladicusa.com']
 DEVELOPMENT = env('DEVELOPMENT')
 
 
