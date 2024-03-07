@@ -38,7 +38,7 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(" ")
 CSRF_TRUSTED_ORIGINS = ['https://vladicusa.com']
 DEVELOPMENT = env('DEVELOPMENT')
-
+DATABASE_TYPE = env('DATABASE_TYPE')
 
 # Application definition
 
@@ -109,6 +109,7 @@ if DEVELOPMENT:
     CORS_ORIGIN_WHITELIST = ('http://localhost:8000', "https://vladicusa.com", "http://127.0.0.1:3000",)
     CORS_ALLOWED_ORIGINS = ['http://localhost:8000', "http://127.0.0.1:3000", "https://vladicusa.com"]
 
+if DATABASE_TYPE == 'server':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
