@@ -106,8 +106,8 @@ if DEVELOPMENT:
         'django.middleware.common.CommonMiddleware',
     ])
     INSTALLED_APPS.append('corsheaders')
-    CORS_ORIGIN_WHITELIST = ('http://localhost:8080', "https://vladicusa.com", "http://127.0.0.1:3000",)
-    CORS_ALLOWED_ORIGINS = ['http://localhost:3000', "http://127.0.0.1:3000", "https://vladicusa.com"]
+    CORS_ORIGIN_WHITELIST = ('http://localhost:8000', "https://vladicusa.com", "http://127.0.0.1:3000",)
+    CORS_ALLOWED_ORIGINS = ['http://localhost:8000', "http://127.0.0.1:3000", "https://vladicusa.com"]
 
     DATABASES = {
         'default': {
