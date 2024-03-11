@@ -44,8 +44,8 @@ class Service(models.Model):
         return self.title_en
 
     class Meta:
-        verbose_name = 'Service'
-        verbose_name_plural = 'Services'
+        verbose_name = 'Check Form'
+        verbose_name_plural = 'Check Forms'
         ordering = ('created_at', )
 
 
