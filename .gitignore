@@ -139,7 +139,7 @@ dmypy.json
 .pyre/
 
 .idea/
-staticfiles/
+#staticfiles/
 image/
 whiteboxmedia/
 docker-compose.yml
