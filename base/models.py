@@ -1,5 +1,9 @@
-from django.db import models
+import datetime
 
+from django.utils.timezone import now
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from ckeditor.fields import RichTextField
 
 
@@ -8,7 +12,7 @@ class Service(models.Model):
         max_length=255,
         verbose_name='Title in English'
     )
-    text_en = models.TextField(
+    text_en = RichTextField(
         verbose_name='Description in English'
     )
     price_en = models.CharField(
@@ -20,8 +24,8 @@ class Service(models.Model):
         max_length=255,
         verbose_name='Title in Russian'
     )
-    text_ru = models.TextField(
-        verbose_name='Description in Russian'
+    text_ru = RichTextField(
+        verbose_name='Description description in Russian'
     )
     price_ru = models.CharField(
         max_length=255,
@@ -33,11 +37,16 @@ class Service(models.Model):
         serialize=False,
         verbose_name='Created at'
     )
+    updated_at = models.DateTimeField(
+        auto_now_add=True,
+        serialize=False,
+        verbose_name='Updated at'
+    )
 
     @property
     def text_preview(self):
-        if len(self.text_en) > 150:
-            return f"{self.text_en[:150]} ..."
+        if len(self.text_en) > 100:
+            return f"{self.text_en[:100]} ..."
         return self.text_en
 
     def __str__(self):
@@ -85,6 +94,22 @@ class AnotherServices(models.Model):
         verbose_name='Tax in Russian'
     )
 
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        serialize=False,
+        verbose_name='Created at'
+    )
+    updated_at = models.DateTimeField(
+        auto_now_add=True,
+        serialize=False,
+        verbose_name='Updated at'
+    )
+
+    @property
+    def text_preview(self):
+        if len(self.description_en) > 100:
+            return f"{self.description_en[:100]} ..."
+        return self.description_en
     class Meta:
         verbose_name = 'Another Service'
         verbose_name_plural = 'Another Services'
@@ -125,6 +150,41 @@ class FamilyServices(models.Model):
         verbose_name='Tax in Russian'
     )
 
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        serialize=False,
+        verbose_name='Created at'
+    )
+    updated_at = models.DateTimeField(
+        auto_now_add=True,
+        serialize=False,
+        verbose_name='Updated at'
+    )
+
+    @property
+    def text_preview(self):
+        if len(self.description_en) > 100:
+            return f"{self.description_en[:100]} ..."
+        return self.description_en
+
     class Meta:
         verbose_name = 'Family Service'
         verbose_name_plural = 'Family Services'
+
+
+@receiver(post_save, sender=Service, dispatch_uid="update_check_form")
+def update_check_form(sender, instance, created, **kwargs):
+    if not created:
+        Service.objects.filter(id=instance.id).update(updated_at=now())
+
+
+@receiver(post_save, sender=AnotherServices, dispatch_uid="update_another_service")
+def update_another_service(sender, instance, created, **kwargs):
+    if not created:
+        AnotherServices.objects.filter(id=instance.id).update(updated_at=now())
+
+
+@receiver(post_save, sender=FamilyServices, dispatch_uid="update_family_service")
+def update_family_service(sender, instance, created, **kwargs):
+    if not created:
+        FamilyServices.objects.filter(id=instance.id).update(updated_at=now())
