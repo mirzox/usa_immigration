@@ -46,8 +46,8 @@ class Service(models.Model):
     @property
     def text_preview(self):
         if len(self.text_en) > 100:
-            return f"{self.text_en[:100]} ...".replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '')
-        return self.text_en.replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '')
+            return f"{self.text_en[:100]} ...".replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '').replace('<strong>', '')
+        return self.text_en.replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '').replace('<strong>', '').replace('<strong>', '')
 
     def __str__(self):
         return self.title_en
@@ -108,8 +108,8 @@ class AnotherServices(models.Model):
     @property
     def text_preview(self):
         if len(self.description_en) > 100:
-            return f"{self.description_en[:100]} ...".replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '')
-        return self.description_en.replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '')
+            return f"{self.description_en[:100]} ...".replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '').replace('<strong>', '')
+        return self.description_en.replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '').replace('<strong>', '')
     class Meta:
         verbose_name = 'Another Service'
         verbose_name_plural = 'Another Services'
@@ -164,8 +164,8 @@ class FamilyServices(models.Model):
     @property
     def text_preview(self):
         if len(self.description_en) > 100:
-            return f"{self.description_en[:100]} ...".replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '')
-        return self.description_en.replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '')
+            return f"{self.description_en[:100]} ...".replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '').replace('<strong>', '')
+        return self.description_en.replace('<p>&nbsp;</p>', '').replace('<p>', '').replace('</p>', '').replace('<strong>', '')
 
     class Meta:
         verbose_name = 'Family Service'
