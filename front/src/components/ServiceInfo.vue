@@ -135,12 +135,7 @@ export default {
     width: 85%;
     font-size:20px
 }
-.button {
-    transition: transform .1s;
-}
-.button :hover{
-    transform: scale(1.04);
-}
+
 @media (max-width: 780px) {
     .service_info {
         padding: 0px 30px;

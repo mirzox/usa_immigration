@@ -132,7 +132,7 @@ export default {
     transition: transform .1s;
 }
 .button :hover{
-    transform: scale(1.04);
+    //transform: scale(1.04);
 }
 @media (max-width: 780px) {
     .service_info {
